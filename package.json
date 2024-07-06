@@ -1,0 +1,24 @@
+{
+  "name": "pgats-testesweb",
+  "version": "1.0.0",
+  "description": "Testes em Cypress na aula do professor Samuel",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "keywords": [
+    "cypress",
+    "web",
+    "teste",
+    "pgats"
+  ],
+  "author": "Johnny Kamigashima",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "cypress": "^13.13.0"
+  }
+}
