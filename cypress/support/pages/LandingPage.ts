@@ -1,6 +1,45 @@
 import { Selector } from "./class/Selector";
 
 export class LandingPage {
+    scrollUpToCaroussel(selectorType: Selector) {
+        cy.xget(selectorType, '[id="slider-carousel"][data-ride="carousel"]', '').scrollIntoView()
+    }
+    carousselShouldHaveText(text: string, selectorType: Selector) {
+        cy.xget(selectorType, '[id="slider-carousel"][data-ride="carousel"]', '').should('contain', text)
+    }
+    clickScrollUpButton(selectorType: Selector) {
+        cy.xget(selectorType, '[id="scrollUp"]', '').click();
+    }
+    scrollToFooter(selectorType: Selector) {
+        cy.xget(selectorType, '.footer-widget', '').scrollIntoView()
+    }
+    clickModalViewCart(selectorType: Selector) {
+        cy.xget(selectorType, '.modal-dialog u', '').contains('View Cart').click();
+    }
+    clickModalContinueShopping(selectorType: Selector) {
+        cy.xget(selectorType, '[id="recommended-item-carousel"] [data-product-id="1"].add-to-cart', '').click();
+    }
+    addRecommendedToCart(item: number, selectorType: Selector) {
+        cy.xget(selectorType, `[id="recommended-item-carousel"] [data-product-id="${item}"].add-to-cart`, '').click({ force: true });
+    }
+    recommendedItemsVisible(selectorType: Selector) {
+        cy.xget(selectorType, '.recommended_items', '').scrollIntoView().should('be.visible')
+    }
+    selectBrand(text: string, selectorType: Selector) {
+        cy.xget(selectorType, '.brands-name', '').contains(text).click()
+    }
+    containBrandsPanel(selectorType: Selector) {
+        cy.xget(selectorType, '.brands_products h2', '').should('contain', 'Brands')
+    }
+    selectSubCategory(text: string, selectorType: Selector) {
+        cy.xget(selectorType, '.panel-body', '').contains(text).click()
+    }
+    selectCategory(text: string, selectorType: Selector) {
+        cy.xget(selectorType, '.panel-heading', '').contains(text).find('.fa-plus').click()
+    }
+    containCatagoryPanel(selectorType: Selector) {
+        cy.xget(selectorType, '.left-sidebar h2', '').should('contain', 'Category')
+    }
     clickCart(selectorType: Selector) {
         cy.xget(selectorType, '.navbar-nav .fa-shopping-cart', '').click({ waitForAnimations: false });
         cy.xget(selectorType, '.container div.breadcrumbs', '').should('contain', 'Shopping Cart')
@@ -23,7 +62,7 @@ export class LandingPage {
         cy.xget(selectorType, '[href="/contact_us"]', '').click();
     }
     clickSigninLogIn(selectorType: Selector) {
-        cy.xget(selectorType, '[href="/login"]', '//*[@href="/login"]').click();
+        cy.xget(selectorType, '[href="/login"]', '//*[@href="/login"]').eq(0).click();
     }
 
     waitUntilCarrousselIsLoaded(selectorType: Selector) {

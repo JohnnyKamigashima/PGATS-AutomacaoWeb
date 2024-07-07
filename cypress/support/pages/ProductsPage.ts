@@ -1,6 +1,18 @@
 import { Selector } from "./class/Selector";
 
 export class ProductsPage {
+    addAllToCart(selectorType: Selector) {
+        cy.xget(selectorType, '.features_items .single-products', '').its('length').then((length) => {
+            cy.xget(selectorType, '.features_items .single-products', '').each(($el, index) => {
+                cy.wrap($el).find('.btn-default.add-to-cart').eq(0).click({ force: true })
+                if (index < length - 1) cy.xget(selectorType, '[data-dismiss="modal"]', '').contains('Continue Shopping').click().eq(1);
+                else cy.xget(selectorType, '[id="cartModal"] [href="/view_cart"]', '').contains('View Cart').click();
+            })
+        })
+    }
+    checkProductsListText(text: string, selectorType: Selector) {
+        cy.xget(selectorType, '.features_items', '').should('contain', text)
+    }
 
     viewCart(selectorType: Selector) {
         cy.xget(selectorType, '.modal-body [href="/view_cart"]', '').eq(0).click();

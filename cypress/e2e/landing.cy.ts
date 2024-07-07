@@ -1,3 +1,4 @@
+import { fakeNome, fakeEmail } from './../support/utility/fakers';
 import { Pricing } from './../support/pages/class/Pricing';
 import { LandingPage } from "../support/pages/LandingPage"
 import { SignPage } from '../support/pages/SignPage'
@@ -193,10 +194,10 @@ describe('Tests on the landing page', () => {
         cartPage.proceedToCheckout(selectorType)
         checkoutPage.reviewOrder(user, selectorType)
         checkoutPage.postComment('Test', selectorType)
-        productPage.placeOrder(selectorType)
+        checkoutPage.placeOrder(selectorType)
         paymentPage.enterPaymentDetails(user, selectorType)
         paymentPage.payAndConfirmOrder(selectorType)
-        paymentPage.checkSuccessMessage('Your order has been placed successfully!', selectorType)
+        paymentPage.checkSuccessMessage('Order Placed!', selectorType)
         loggedPage.deleteAccount(loggedPage, selectorType)
     })
     it('T15 - Should place order', () => {
@@ -211,12 +212,142 @@ describe('Tests on the landing page', () => {
         cartPage.proceedToCheckout(selectorType)
         checkoutPage.reviewOrder(user, selectorType)
         checkoutPage.postComment('Test', selectorType)
-        productPage.placeOrder(selectorType)
+        checkoutPage.placeOrder(selectorType)
         paymentPage.enterPaymentDetails(user, selectorType)
         paymentPage.payAndConfirmOrder(selectorType)
-        paymentPage.checkSuccessMessage('Your order has been placed successfully!', selectorType)
+        paymentPage.checkSuccessMessage('Order Placed!', selectorType)
         paymentPage.checkOrderPlacedMessage('Congratulations! Your order has been confirmed!', selectorType)
         loggedPage.deleteAccount(loggedPage, selectorType)
+    })
+
+    it('T16 - Place order: Login before Checkout', () => {
+        const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
+
+        newAccountPage.createNewAccount(user, pages)
+        landingPage.clickProducts(selectorType)
+        productsPage.clickViewProduct(1, selectorType)
+        productPage.addToCart(1, selectorType)
+        productsPage.viewCart(selectorType)
+        cartPage.proceedToCheckout(selectorType)
+        checkoutPage.reviewOrder(user, selectorType)
+        checkoutPage.postComment('Teste', selectorType)
+        checkoutPage.placeOrder(selectorType)
+        paymentPage.enterPaymentDetails(user, selectorType)
+        paymentPage.payAndConfirmOrder(selectorType)
+        paymentPage.checkSuccessMessage('Order Placed!', selectorType)
+        loggedPage.deleteAccount(loggedPage, selectorType)
+    })
+
+    it('T17 - Remove Products From Cart', () => {
+        productsPage.clickViewProduct(1, selectorType)
+        productPage.addToCart(1, selectorType)
+        productsPage.viewCart(selectorType)
+        cartPage.removeItem(1, selectorType)
+        cartPage.isEmpty(selectorType)
+    })
+
+    it('T18 - View Category Products', () => {
+        landingPage.containCatagoryPanel(selectorType)
+        landingPage.selectCategory('Women', selectorType)
+        landingPage.selectSubCategory('Dress', selectorType)
+        productsPage.checkProductsListText('Women - Dress Products', selectorType)
+        landingPage.selectCategory('Men', selectorType)
+        landingPage.selectSubCategory('Tshirts', selectorType)
+        productsPage.checkProductsListText('Men - Tshirts Products', selectorType)
+    })
+
+    it('T19 - View & Cart Brand Products', () => {
+        landingPage.clickProducts(selectorType)
+        landingPage.containBrandsPanel(selectorType)
+        landingPage.selectBrand('Polo', selectorType)
+        productsPage.checkProductsListText('Brand - Polo Products', selectorType)
+        landingPage.selectBrand('Babyhug', selectorType)
+        productsPage.checkProductsListText('Brand - Babyhug Products', selectorType)
+    })
+
+    it('T20 - Search Products and Verify Cart After Login', () => {
+        const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
+
+        newAccountPage.createNewAccount(user, pages)
+        loggedPage.clickLogout(selectorType)
+        landingPage.clickProducts(selectorType)
+        productsPage.searchProduct('Polo', selectorType)
+        productsPage.checkSearchedProducts('Polo', selectorType)
+        productsPage.addAllToCart(selectorType)
+        cartPage.productsInCart(1, selectorType)
+        newAccountPage.login(user, pages)
+        landingPage.clickCart(selectorType)
+        cartPage.productsInCart(1, selectorType)
+
+    })
+
+    it('T21 - Add review on product', () => {
+        landingPage.clickProducts(selectorType)
+        productsPage.clickViewProduct(1, selectorType)
+        productPage.containWriteYourReview(selectorType)
+        productPage.reviewerName(user.fakeNome, selectorType)
+        productPage.reviewerEmail(user.fakeEmail, selectorType)
+        productPage.reviewText('Teste', selectorType)
+        productPage.submitReview(selectorType)
+
+    })
+
+    it('T22 - Add to cart from Recommended items', () => {
+        landingPage.recommendedItemsVisible(selectorType)
+        landingPage.addRecommendedToCart(1, selectorType)
+        landingPage.clickModalViewCart(selectorType)
+        cartPage.productsInCart(1, selectorType)
+    })
+
+    it('T23 - Verify address details in checkout page', () => {
+        const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
+
+        newAccountPage.createNewAccount(user, pages)
+        loggedPage.checkLoggedInUser(user.fakeNome, selectorType)
+        landingPage.clickProducts(selectorType)
+        productsPage.clickViewProduct(1, selectorType)
+        productPage.addToCart(1, selectorType)
+        productsPage.viewCart(selectorType)
+        cartPage.proceedToCheckout(selectorType)
+        landingPage.clickCart(selectorType)
+        cartPage.proceedToCheckout(selectorType)
+        checkoutPage.reviewOrder(user, selectorType)
+        loggedPage.deleteAccount(loggedPage, selectorType)
+    })
+
+    it('T24 - Download Invoice after purchase order', () => {
+        const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
+
+        landingPage.clickProducts(selectorType)
+        productsPage.clickViewProduct(1, selectorType)
+        productPage.addToCart(1, selectorType)
+        productsPage.viewCart(selectorType)
+        cartPage.proceedToCheckout(selectorType)
+        cartPage.clickSigninLogIn(selectorType)
+        newAccountPage.createNewAccount(user, pages)
+        loggedPage.checkLoggedInUser(user.fakeNome, selectorType)
+        landingPage.clickCart(selectorType)
+        cartPage.proceedToCheckout(selectorType)
+        checkoutPage.reviewOrder(user, selectorType)
+        checkoutPage.postComment('Test', selectorType)
+        checkoutPage.placeOrder(selectorType)
+        paymentPage.enterPaymentDetails(user, selectorType)
+        paymentPage.payAndConfirmOrder(selectorType)
+        paymentPage.checkSuccessMessage('Order Placed!', selectorType)
+        paymentPage.clickDownloadInvoice(selectorType)
+        loggedPage.deleteAccount(loggedPage, selectorType)
+    })
+
+    it('T25 - Verify Scroll Up using Arrow button and Scroll Down functionality', () => {
+        landingPage.scrollToFooter(selectorType)
+        landingPage.clickScrollUpButton(selectorType)
+        landingPage.carousselShouldHaveText('Full-Fledged practice website for Automation Engineers', selectorType)
+    })
+
+    it('T26 - Verify Scroll Up without Arrow button and Scroll Down functionality', () => {
+        landingPage.scrollToFooter(selectorType)
+        landingPage.scrollUpToCaroussel(selectorType)
+        landingPage.carousselShouldHaveText('Full-Fledged practice website for Automation Engineers', selectorType)
     })
 })
 

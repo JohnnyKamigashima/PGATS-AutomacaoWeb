@@ -1,11 +1,24 @@
 import { Selector } from "./class/Selector";
 
 export class ProductPage {
+    submitReview(selectorType: Selector) {
+        cy.xget(selectorType, '[id="button-review"]', '').click();
+        cy.xget(selectorType, '.alert-success', '').should('contain', 'Thank you for your review.')
+    }
+    reviewText(text: string, selectorType: Selector) {
+        cy.xget(selectorType, '[id="review"]', '').type(text)
+    }
+    reviewerEmail(fakeEmail: any, selectorType: Selector) {
+        cy.xget(selectorType, '[id="email"]', '').type(fakeEmail)
+    }
+    reviewerName(fakeNome: any, selectorType: Selector) {
+        cy.xget(selectorType, '[id="name"]', '').type(fakeNome)
+    }
+    containWriteYourReview(selectorType: Selector) {
+        cy.xget(selectorType, '.category-tab.shop-details-tab', '').should('contain', 'Write Your Review')
+    }
     increaseQuantity(value: number, selectorType: Selector) {
         cy.xget(selectorType, '[id="quantity"]', '').clear().type(value.toString());
-    }
-    placeOrder(selectorType: Selector) {
-        cy.xget(selectorType, '[href="/payment"]', '').click();
     }
 
     addToCart(itemNo: any, selectorType: Selector) {

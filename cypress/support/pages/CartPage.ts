@@ -2,6 +2,12 @@ import { Pricing } from "./class/Pricing";
 import { Selector } from "./class/Selector";
 
 export class CartPage {
+    isEmpty(selectorType: Selector) {
+        cy.xget(selectorType, '[id="empty_cart"]', '').should('be.visible')
+    }
+    removeItem(itemNo: number, selectorType: Selector) {
+        cy.xget(selectorType, '.cart_quantity_delete', '').eq(itemNo - 1).click();
+    }
     clickSigninLogIn(selectorType: Selector) {
         cy.xget(selectorType, '[id="checkoutModal"] [href="/login"]', '').contains('Register / Login').click();
     }

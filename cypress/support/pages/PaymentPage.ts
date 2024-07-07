@@ -2,9 +2,12 @@ import { Selector } from "./class/Selector";
 import { User } from './class/User';
 
 export class PaymentPage {
+    clickDownloadInvoice(selectorType: Selector) {
+        cy.xget(selectorType, '.btn-default', '').contains('Download Invoice').click()
+            .xget(selectorType, '[data-qa="continue-button"]', '').contains('Continue').click()
+    }
     checkSuccessMessage(message: string, selectorType: Selector) {
-        // cy.xget(selectorType, '#success_message', '').contains(message).should('exist')
-        cy.xget(selectorType, '[data-qa="order-placed"] b', '').should('contain', 'Order Placed!')
+        cy.xget(selectorType, '[data-qa="order-placed"] b', '').should('contain', message)
 
     }
 
