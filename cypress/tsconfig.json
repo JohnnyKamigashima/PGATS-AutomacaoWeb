@@ -1,6 +1,7 @@
 {
     "include": [
         "**/*.ts",
-        "../cypress.d.ts"
+        "../cypress.d.ts",
+        "../cypress/support/commands.d.ts"
     ]
 }

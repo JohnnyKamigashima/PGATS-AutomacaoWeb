@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+
+import { Selector } from "./pages/class/Selector";
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -35,3 +38,12 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add('xget', (selectorType: Selector, cssSelector: string, xpathSelector: string) => {
+    // your code here
+    if (selectorType === Selector.css) {
+        return cy.get(cssSelector)
+    } else {
+        return cy.xpath(xpathSelector)
+    }
+});

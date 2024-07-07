@@ -21,9 +21,13 @@
     "@faker-js/faker": "^8.4.1",
     "@types/cypress": "^1.1.3",
     "@types/node": "^20.14.10",
+    "cypress-log-filter": "^1.0.5",
+    "cypress-xpath": "^2.0.1",
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "cypress": "^13.13.0"
-  }
+    "cypress": "^13.13.0",
+    "cypress-plugin-xhr-toggle": "^1.2.1"
+  },
+  "types": "./cypress/support/commands.d.ts"
 }

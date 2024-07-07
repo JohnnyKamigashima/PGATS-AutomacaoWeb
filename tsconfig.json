@@ -9,5 +9,5 @@
     "lib":["dom", "es2023"],
     "types":["cypress", "node"]
   }
-  , "include":["**/*.ts", "**/**/*.ts", "cypress/e2e/**/**.cy.ts"]
+  , "include":["**/*.ts", "**/**/*.ts", "cypress/e2e/**/**.cy.ts", "cypress/support/commands.d.ts"]
 }

@@ -1,12 +1,16 @@
+import { Selector } from "./class/Selector";
+
 export class LandingPage {
-    waitUntilCarrousselIsLoaded() {
-        cy.get('[data-ride="carousel"]').eq(0).should('be.visible')
+    clickSigninLogIn(selectorType: Selector) {
+        cy.xget(selectorType, '[href="/login"]', '//*[@href="/login"]').click();
     }
+
+    waitUntilCarrousselIsLoaded(selectorType: Selector) {
+        cy.xget(selectorType, '[data-ride="carousel"]', '//*[@data-ride="carousel"]').eq(0).should('be.visible');
+    }
+
     visit() {
-        cy.visit('/')
-    }
-    clickSigninLogIn() {
-        cy.get('[href="/login"]').click()
+        cy.visit('/');
     }
 
 }
