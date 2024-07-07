@@ -6,8 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "npx cypress open",
-    "cypress:open": "npx cypress open",
-    "cypress:run": "npx cypress run"
+    "cypress:open": "npx cypress open --e2e --browser chrome",
+    "cypress:run": "npx cypress run",
+    "cypress:samuel": "npx cypress run --spec cypress/e2e/Exercicios/originalSamuelCorrigido.cy.ts",
+    "cypress:exercicios": "npx cypress run --spec cypress/e2e/landing.cy.ts"
   },
   "keywords": [
     "cypress",
@@ -27,7 +29,7 @@
   },
   "dependencies": {
     "cypress": "^13.13.0",
-    "cypress-plugin-xhr-toggle": "^1.2.1"
-  },
-  "types": "./cypress/support/commands.d.ts"
+    "cypress-plugin-xhr-toggle": "^1.2.1",
+    "cypress-real-events": "^1.13.0"
+  }
 }

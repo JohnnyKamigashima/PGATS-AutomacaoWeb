@@ -18,5 +18,7 @@ import './commands'
 import "cypress-log-filter"
 import 'cypress-plugin-xhr-toggle'
 import 'cypress-xpath'
+import "cypress-real-events/support";
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

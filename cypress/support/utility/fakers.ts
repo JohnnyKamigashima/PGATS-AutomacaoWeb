@@ -19,3 +19,5 @@ export const country = fakerBr.location.country();
 export const zipCode = fakerBr.location.zipCode();
 export const cardNumber = faker.finance.creditCardNumber();
 export const cardType = faker.finance.creditCardIssuer();
+export const cardExpirationDate = faker.date.future();
+export const cardCVC = faker.finance.creditCardCVV();

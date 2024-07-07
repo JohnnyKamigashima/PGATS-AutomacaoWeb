@@ -2,9 +2,6 @@ import { User } from "./class/User";
 import { Selector } from "./class/Selector";
 
 export class NewAccountPage {
-    checkErrorMessage(text: string, selectorType: Selector) {
-        cy.xget(selectorType, 'p[style="color: red;"]', '').should('contain', text).should('be.visible')
-    }
 
     login(user: User, pages: { landingPage: import("./LandingPage").LandingPage; signPage: import("./SignPage").SignPage; accountCreatedPage: import("./AccountCreatedPage").AccountCreatedPage; selector: Selector; }) {
         pages.landingPage.clickSigninLogIn(pages.selector)

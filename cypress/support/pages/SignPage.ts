@@ -1,7 +1,11 @@
 import { Selector } from "./class/Selector";
-import { User } from "./class/User";
 
 export class SignPage {
+
+    checkErrorMessage(text: string, selectorType: Selector) {
+        cy.xget(selectorType, 'p[style="color: red;"]', '').should('contain', text).should('be.visible')
+    }
+
     clickLogin(selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="login-button"]', '').click();
     }

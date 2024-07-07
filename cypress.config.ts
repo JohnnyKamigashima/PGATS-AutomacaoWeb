@@ -5,8 +5,12 @@ export default defineConfig({
   e2e: {
     baseUrl: 'https://automationexercise.com',
     env: {
-      logLevel: "ASSERT",
+      logLevel: "VERBOSE",
       hideXhr: true
+    },
+    retries: {
+      runMode: 2,
+      openMode: 0,
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here
