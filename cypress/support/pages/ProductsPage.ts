@@ -12,7 +12,7 @@ export class ProductsPage {
         cy.xget(selectorType, 'div.product-image-wrapper', '').eq(index - 1).scrollIntoView().realHover('mouse');
     }
     hoverAddToCart(index: number, selectorType: Selector) {
-        cy.xget(selectorType, `[data-product-id=${index}].add-to-cart`, '').eq(1).click();
+        cy.xget(selectorType, `[data-product-id=${index}].add-to-cart`, '').eq(1).click({ waitForAnimations: false });
     }
     checkSearchedProducts(product: string, selectorType: Selector) {
         cy.xget(selectorType, 'h2', '').should('contain', 'Searched Products')
