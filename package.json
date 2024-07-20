@@ -8,6 +8,7 @@
     "test": "npx cypress open",
     "cypress:open": "npx cypress open --e2e --browser chrome",
     "cypress:run": "npx cypress run",
+    "browserstack:run": "browserstack-cypress run --spec cypress/e2e/Exercicios/originalSamuelCorrigido.cy.ts",
     "cypress:samuel": "npx cypress run --spec cypress/e2e/Exercicios/originalSamuelCorrigido.cy.ts",
     "cypress:exercicios": "npx cypress run --spec cypress/e2e/landing.cy.ts"
   },
@@ -29,11 +30,11 @@
     "cypress-xpath": "^2.0.1",
     "globals": "^15.8.0",
     "typescript": "^5.5.3",
-    "typescript-eslint": "^7.16.1"
-  },
-  "dependencies": {
-    "cypress": "^13.13.0",
+    "typescript-eslint": "^7.16.1",
     "cypress-plugin-xhr-toggle": "^1.2.1",
     "cypress-real-events": "^1.13.0"
+  },
+  "dependencies": {
+    "cypress": "^13.13.0"
   }
 }

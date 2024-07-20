@@ -1,6 +1,6 @@
 import { defineConfig } from "cypress";
 import cypressFailFast from 'cypress-fail-fast/plugin.js';
-import cypressMochawesomeReporter from 'cypress-mochawesome-reporter/plugin';
+import cypressMochawesomeReporter from 'cypress-mochawesome-reporter/plugin.js';
 
 export default defineConfig({
   projectId: 'ekfjcc',
