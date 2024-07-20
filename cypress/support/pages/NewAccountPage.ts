@@ -1,3 +1,4 @@
+import { LoggedPage } from './LoggedPage';
 import { User } from "./class/User";
 import { Selector } from "./class/Selector";
 
@@ -8,7 +9,8 @@ export class NewAccountPage {
         pages.signPage.shouldContainText('Login to your account', pages.selector)
         pages.signPage.loginEmail(user.fakeEmail, pages.selector)
         pages.signPage.loginPassword(user.fakePassword, pages.selector)
-        pages.signPage.clickLogin(pages.selector)
+        pages.signPage.clickLogin(pages.selector);
+        return new LoggedPage()
     }
 
     createNewAccount(user: User,
@@ -45,67 +47,107 @@ export class NewAccountPage {
         this.clickCreateAccountButton(pages.selector)
         pages.accountCreatedPage.checkHeaderText('Account Created!', pages.selector)
         pages.accountCreatedPage.checkUrl()
-        pages.accountCreatedPage.clickContinueButton(pages.selector)
+        pages.accountCreatedPage.clickContinueButton(pages.selector);
+        return new LoggedPage()
     }
     clickCreateAccountButton(selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="create-account"]', '//*[@data-qa="create-account"]').click();
+        ;
+        return this
     }
     fillMobileNumber(mobileNumber: string, selectorType: Selector) {
         cy.xget(selectorType, '[name="mobile_number"]', '//*[@name="mobile_number"]').type(mobileNumber);
+        ;
+        return this
     }
     fillZipcode(zipCode: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="zipcode"]', '//*[@data-qa="zipcode"]').type(zipCode);
+        ;
+        return this
     }
     fillCity(city: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="city"]', '//*[@data-qa="city"]').type(city);
+        ;
+        return this
     }
     fillState(state: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="state"]', '//*[@data-qa="state"]').type(state);
+        ;
+        return this
     }
     selectCountry(pais: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="country"]', '//*[@data-qa="country"]').select(pais)
+            ;
+        return this
     }
     fillAddress(address: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="address"]', '//*[@data-qa="address"]').type(address);
+        ;
+        return this
     }
     fillCompanyName(companyName: string, selectorType: Selector) {
         cy.xget(selectorType, '[id="company"]', '//*[@id="company"]').type(companyName);
+        ;
+        return this
     }
     fillLastName(lastName: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="last_name"]', '//*[@data-qa="last_name"]').type(lastName);
+        ;
+        return this
     }
     fillFirstName(fakeFirstName: any, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="first_name"]', '//*[@data-qa="first_name"]').type(fakeFirstName);
+        ;
+        return this
     }
     checkSpecialOffers(selectorType: Selector) {
         cy.xget(selectorType, '[type="checkbox"][id="optin"]', '//*[@type="checkbox" and @id="optin"]').check()
+            ;
+        return this
     }
     checkNewsletter(selectorType: Selector) {
         cy.xget(selectorType, '[type="checkbox"][id="newsletter"]', '//*[@type="checkbox" and @id="newsletter"]').check()
+            ;
+        return this
     }
     selectBirthYear(fakeYear: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="years"]', '//*[@data-qa="years"]').select(fakeYear)
+            ;
+        return this
     }
     selectBirthMonth(fakeMonth: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="months"]', '//*[@data-qa="months"]').select(fakeMonth)
+            ;
+        return this
     }
     fillPassword(fakePassword: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="password"]', '//*[@data-qa="password"]').type(fakePassword);
+        ;
+        return this
     }
     fillEmail(fakeEmail: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="email"]', '//*[@data-qa="email"]').type(fakeEmail);
+        ;
+        return this
     }
     fillName(fakeNome: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="name"]', '//*[@data-qa="name"]').type(fakeNome);
+        ;
+        return this
     }
     selectRadioGender(name: string, selectorType: Selector) {
         cy.xget(selectorType, `.radio-inline [value=${name}]`, `//*[@value="${name}"]`).click()
+            ;
+        return this
     }
     checkHeaderText(text: string, selectorType: Selector) {
-        cy.xget(selectorType, 'section b', '//section//b').contains(text)
+        cy.xget(selectorType, 'section b', '//section//b').contains(text);
+        return this
     }
     selectBirthDay(day: string, selectorType: Selector) {
         cy.xget(selectorType, '[data-qa="days"]', '//*[@data-qa="days"]').select(day)
+            ;
+        return this
     }
 
 }

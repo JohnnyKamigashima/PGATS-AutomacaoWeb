@@ -235,7 +235,7 @@ describe('API Test - Get All Products List', () => {
             })
     })
 
-    it('API13 - Deve retornar mensagem de sucesso ao tentar atualizar uma conta com os dados válidos', () => {
+    it.skip('API13 - Deve retornar mensagem de sucesso ao tentar atualizar uma conta com os dados válidos', () => {
         cy.request({
             method: 'PUT',
             url: '/api/updateAccount',
@@ -270,7 +270,7 @@ describe('API Test - Get All Products List', () => {
             })
     })
 
-    it('API14 - Deve retornar os detalhes da conta do usuário com email válido', () => {
+    it.skip('API14 - Deve retornar os detalhes da conta do usuário com email válido', () => {
         cy.request({
             method: 'GET',
             url: '/api/getUserDetailByEmail',

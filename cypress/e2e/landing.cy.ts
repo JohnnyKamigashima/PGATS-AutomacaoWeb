@@ -1,4 +1,3 @@
-import { fakeNome, fakeEmail } from './../support/utility/fakers';
 import { Pricing } from './../support/pages/class/Pricing';
 import { LandingPage } from "../support/pages/LandingPage"
 import { SignPage } from '../support/pages/SignPage'
@@ -32,14 +31,14 @@ describe('Tests on the landing page', () => {
     beforeEach('Visits the landing page', () => {
         user = new User()
         landingPage.visit()
-        landingPage.waitUntilCarrousselIsLoaded(selectorType)
+            .waitUntilCarrousselIsLoaded(selectorType)
     })
 
     it('T1 - Should sign up and delete account', () => {
         const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
 
         newAccountPage.createNewAccount(user, pages)
-        loggedPage.checkLoggedInUser(user.fakeNome, selectorType)
+            .checkLoggedInUser(user.fakeNome, selectorType);
         loggedPage.deleteAccount(loggedPage, selectorType)
     }
     )
@@ -48,10 +47,10 @@ describe('Tests on the landing page', () => {
         const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
 
         newAccountPage.createNewAccount(user, pages)
-        loggedPage.clickLogout(selectorType)
+            .clickLogout(selectorType);
         newAccountPage.login(user, pages)
-        loggedPage.checkLoggedInUser(user.fakeNome, selectorType)
-        loggedPage.deleteAccount(loggedPage, selectorType)
+            .checkLoggedInUser(user.fakeNome, selectorType)
+            .deleteAccount(loggedPage, selectorType)
     })
 
     it('T3 - Should not login with incorrect email and password', () => {
@@ -66,10 +65,10 @@ describe('Tests on the landing page', () => {
         const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
 
         newAccountPage.createNewAccount(user, pages)
-        loggedPage.clickLogout(selectorType)
+            .clickLogout(selectorType);
         newAccountPage.login(user, pages)
-        loggedPage.checkLoggedInUser(user.fakeNome, selectorType)
-        loggedPage.clickLogout(selectorType)
+            .checkLoggedInUser(user.fakeNome, selectorType)
+            .clickLogout(selectorType);
         signPage.shouldContainText('Login to your account', selectorType)
 
     })
@@ -78,27 +77,27 @@ describe('Tests on the landing page', () => {
         const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
 
         newAccountPage.createNewAccount(user, pages)
-        loggedPage.clickLogout(selectorType)
-        landingPage.clickSigninLogIn(selectorType)
-        signPage.shouldContainText('New User Signup!', selectorType)
-        signPage.fillSignUpName(user.fakeNome, selectorType)
-        signPage.fillEmail(user.fakeEmail, selectorType)
-        signPage.clickSignUp(selectorType)
-        signPage.checkErrorMessage('Email Address already exist!', selectorType)
+            .clickLogout(selectorType)
+            .clickSigninLogIn(selectorType)
+            .shouldContainText('New User Signup!', selectorType)
+            .fillSignUpName(user.fakeNome, selectorType)
+            .fillEmail(user.fakeEmail, selectorType)
+            .clickSignUp(selectorType)
+            .checkErrorMessage('Email Address already exist!', selectorType)
     })
 
     it('T6 - Should submit contact form', () => {
         landingPage.clickContactUs(selectorType)
-        contactsPage.checkHeaderText('Get In Touch', selectorType)
-        contactsPage.fillName(user.fakeNome, selectorType)
-        contactsPage.fillEmail(user.fakeEmail, selectorType)
-        contactsPage.fillSubject('Test', selectorType)
-        contactsPage.fillMessage('Test', selectorType)
-        contactsPage.uploadFile('cypress/fixtures/example.json', selectorType)
-        contactsPage.clickSubmit(selectorType)
-        contactsPage.checkSuccessMessage('Success! Your details have been submitted successfully.', selectorType)
-        contactsPage.clickOk(selectorType)
-        landingPage.waitUntilCarrousselIsLoaded(selectorType)
+            .checkHeaderText('Get In Touch', selectorType)
+            .fillName(user.fakeNome, selectorType)
+            .fillEmail(user.fakeEmail, selectorType)
+            .fillSubject('Test', selectorType)
+            .fillMessage('Test', selectorType)
+            .uploadFile('cypress/fixtures/example.json', selectorType)
+            .clickSubmit(selectorType)
+            .checkSuccessMessage('Success! Your details have been submitted successfully.', selectorType)
+            .clickOk(selectorType)
+            .waitUntilCarrousselIsLoaded(selectorType)
     })
 
     it('T7 - Should navigate to test cases page', () => {
@@ -107,18 +106,18 @@ describe('Tests on the landing page', () => {
 
     it('T8 - Should navigate to test cases page', () => {
         landingPage.clickProducts(selectorType)
-        productsPage.checkHeaderText('All Products', selectorType)
-        productsPage.checkProductsList(selectorType)
-        productsPage.clickViewProduct(1, selectorType)
-        productPage.checkProductDetail(selectorType)
+            .checkHeaderText('All Products', selectorType)
+            .checkProductsList(selectorType)
+            .clickViewProduct(1, selectorType)
+            .checkProductDetail(selectorType)
 
     })
 
     it('T9 - Should search for a product', () => {
         landingPage.clickProducts(selectorType)
-        productsPage.checkHeaderText('All Products', selectorType)
-        productsPage.searchProduct('Women', selectorType)
-        productsPage.checkSearchedProducts('Women', selectorType)
+            .checkHeaderText('All Products', selectorType)
+            .searchProduct('Women', selectorType)
+            .checkSearchedProducts('Women', selectorType)
     })
 
     it('T10 - Should subscribe to newsletter', () => {
@@ -149,16 +148,16 @@ describe('Tests on the landing page', () => {
         pricingList.push(pricing2)
 
         landingPage.clickProducts(selectorType)
-        productsPage.searchProduct(pricingList[0].description, selectorType)
-        productsPage.hoverOverProduct(1, selectorType)
-        productsPage.hoverAddToCart(1, selectorType)
-        productsPage.continueModal(selectorType)
-        productsPage.searchProduct(pricingList[1].description, selectorType)
-        productsPage.hoverOverProduct(1, selectorType)
-        productsPage.hoverAddToCart(2, selectorType)
-        productsPage.viewCart(selectorType)
-        cartPage.productsInCart(2, selectorType)
-        cartPage.productsPricesInCart(pricingList, selectorType)
+            .searchProduct(pricingList[0].description, selectorType)
+            .hoverOverProduct(1, selectorType)
+            .hoverAddToCart(1, selectorType)
+            .continueModal(selectorType)
+            .searchProduct(pricingList[1].description, selectorType)
+            .hoverOverProduct(1, selectorType)
+            .hoverAddToCart(2, selectorType)
+            .viewCart(selectorType)
+            .productsInCart(2, selectorType)
+            .productsPricesInCart(pricingList, selectorType)
     })
 
     it('T13 - Should verify product quantity in cart', () => {
@@ -172,10 +171,10 @@ describe('Tests on the landing page', () => {
         pricingList.push(pricing1)
 
         productsPage.clickViewProduct(1, selectorType)
-        productPage.increaseQuantity(4, selectorType)
-        productPage.addToCart(1, selectorType)
-        productsPage.viewCart(selectorType)
-        cartPage.productsPricesInCart(pricingList, selectorType)
+            .increaseQuantity(4, selectorType)
+            .addToCart(selectorType)
+            .viewCart(selectorType)
+            .productsPricesInCart(pricingList, selectorType)
 
     })
 
@@ -183,40 +182,40 @@ describe('Tests on the landing page', () => {
         const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
 
         landingPage.clickProducts(selectorType)
-        productsPage.clickViewProduct(1, selectorType)
-        productPage.addToCart(1, selectorType)
-        productsPage.viewCart(selectorType)
-        cartPage.proceedToCheckout(selectorType)
-        cartPage.clickSigninLogIn(selectorType)
+            .clickViewProduct(1, selectorType)
+            .addToCart(selectorType)
+            .viewCart(selectorType)
+            .proceedToCheckout(selectorType);
+        landingPage.clickSigninLogIn(selectorType);
         newAccountPage.createNewAccount(user, pages)
-        loggedPage.checkLoggedInUser(user.fakeNome, selectorType)
+            .checkLoggedInUser(user.fakeNome, selectorType);
         landingPage.clickCart(selectorType)
-        cartPage.proceedToCheckout(selectorType)
-        checkoutPage.reviewOrder(user, selectorType)
-        checkoutPage.postComment('Test', selectorType)
-        checkoutPage.placeOrder(selectorType)
-        paymentPage.enterPaymentDetails(user, selectorType)
-        paymentPage.payAndConfirmOrder(selectorType)
-        paymentPage.checkSuccessMessage('Order Placed!', selectorType)
+            .proceedToCheckout(selectorType)
+            .reviewOrder(user, selectorType)
+            .postComment('Test', selectorType)
+            .placeOrder(selectorType)
+            .enterPaymentDetails(user, selectorType)
+            .payAndConfirmOrder(selectorType)
+            .checkSuccessMessage('Order Placed!', selectorType);
         loggedPage.deleteAccount(loggedPage, selectorType)
     })
     it('T15 - Should place order', () => {
         const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
 
         newAccountPage.createNewAccount(user, pages)
-        loggedPage.checkLoggedInUser(user.fakeNome, selectorType)
+            .checkLoggedInUser(user.fakeNome, selectorType);
         landingPage.clickProducts(selectorType)
-        productsPage.clickViewProduct(1, selectorType)
-        productPage.addToCart(1, selectorType)
+            .clickViewProduct(1, selectorType)
+            .addToCart(selectorType);
         landingPage.clickCart(selectorType)
-        cartPage.proceedToCheckout(selectorType)
-        checkoutPage.reviewOrder(user, selectorType)
-        checkoutPage.postComment('Test', selectorType)
-        checkoutPage.placeOrder(selectorType)
-        paymentPage.enterPaymentDetails(user, selectorType)
-        paymentPage.payAndConfirmOrder(selectorType)
-        paymentPage.checkSuccessMessage('Order Placed!', selectorType)
-        paymentPage.checkOrderPlacedMessage('Congratulations! Your order has been confirmed!', selectorType)
+            .proceedToCheckout(selectorType)
+            .reviewOrder(user, selectorType)
+            .postComment('Test', selectorType)
+            .placeOrder(selectorType)
+            .enterPaymentDetails(user, selectorType)
+            .payAndConfirmOrder(selectorType)
+            .checkSuccessMessage('Order Placed!', selectorType)
+            .checkOrderPlacedMessage('Congratulations! Your order has been confirmed!', selectorType);
         loggedPage.deleteAccount(loggedPage, selectorType)
     })
 
@@ -225,93 +224,93 @@ describe('Tests on the landing page', () => {
 
         newAccountPage.createNewAccount(user, pages)
         landingPage.clickProducts(selectorType)
-        productsPage.clickViewProduct(1, selectorType)
-        productPage.addToCart(1, selectorType)
-        productsPage.viewCart(selectorType)
-        cartPage.proceedToCheckout(selectorType)
-        checkoutPage.reviewOrder(user, selectorType)
-        checkoutPage.postComment('Teste', selectorType)
-        checkoutPage.placeOrder(selectorType)
-        paymentPage.enterPaymentDetails(user, selectorType)
-        paymentPage.payAndConfirmOrder(selectorType)
-        paymentPage.checkSuccessMessage('Order Placed!', selectorType)
+            .clickViewProduct(1, selectorType)
+            .addToCart(selectorType)
+            .viewCart(selectorType)
+            .proceedToCheckout(selectorType)
+            .reviewOrder(user, selectorType)
+            .postComment('Teste', selectorType)
+            .placeOrder(selectorType)
+            .enterPaymentDetails(user, selectorType)
+            .payAndConfirmOrder(selectorType)
+            .checkSuccessMessage('Order Placed!', selectorType);
         loggedPage.deleteAccount(loggedPage, selectorType)
     })
 
     it('T17 - Remove Products From Cart', () => {
         productsPage.clickViewProduct(1, selectorType)
-        productPage.addToCart(1, selectorType)
-        productsPage.viewCart(selectorType)
-        cartPage.removeItem(1, selectorType)
-        cartPage.isEmpty(selectorType)
+            .addToCart(selectorType)
+            .viewCart(selectorType)
+            .removeItem(1, selectorType)
+            .isEmpty(selectorType)
     })
 
     it('T18 - View Category Products', () => {
         landingPage.containCatagoryPanel(selectorType)
-        landingPage.selectCategory('Women', selectorType)
-        landingPage.selectSubCategory('Dress', selectorType)
-        productsPage.checkProductsListText('Women - Dress Products', selectorType)
-        landingPage.selectCategory('Men', selectorType)
-        landingPage.selectSubCategory('Tshirts', selectorType)
-        productsPage.checkProductsListText('Men - Tshirts Products', selectorType)
+            .selectCategory('Women', selectorType)
+            .selectSubCategory('Dress', selectorType)
+            .checkProductsListText('Women - Dress Products', selectorType)
+            .selectCategory('Men', selectorType)
+            .selectSubCategory('Tshirts', selectorType)
+            .checkProductsListText('Men - Tshirts Products', selectorType)
     })
 
     it('T19 - View & Cart Brand Products', () => {
         landingPage.clickProducts(selectorType)
         landingPage.containBrandsPanel(selectorType)
-        landingPage.selectBrand('Polo', selectorType)
-        productsPage.checkProductsListText('Brand - Polo Products', selectorType)
-        landingPage.selectBrand('Babyhug', selectorType)
-        productsPage.checkProductsListText('Brand - Babyhug Products', selectorType)
+            .selectBrand('Polo', selectorType)
+            .checkProductsListText('Brand - Polo Products', selectorType)
+            .selectBrand('Babyhug', selectorType)
+            .checkProductsListText('Brand - Babyhug Products', selectorType)
     })
 
     it('T20 - Search Products and Verify Cart After Login', () => {
         const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
 
         newAccountPage.createNewAccount(user, pages)
-        loggedPage.clickLogout(selectorType)
-        landingPage.clickProducts(selectorType)
-        productsPage.searchProduct('Polo', selectorType)
-        productsPage.checkSearchedProducts('Polo', selectorType)
-        productsPage.addAllToCart(selectorType)
-        cartPage.productsInCart(1, selectorType)
+            .clickLogout(selectorType)
+            .clickProducts(selectorType)
+            .searchProduct('Polo', selectorType)
+            .checkSearchedProducts('Polo', selectorType)
+            .addAllToCart(selectorType)
+            .productsInCart(1, selectorType);
         newAccountPage.login(user, pages)
         landingPage.clickCart(selectorType)
-        cartPage.productsInCart(1, selectorType)
+            .productsInCart(1, selectorType)
 
     })
 
     it('T21 - Add review on product', () => {
         landingPage.clickProducts(selectorType)
-        productsPage.clickViewProduct(1, selectorType)
-        productPage.containWriteYourReview(selectorType)
-        productPage.reviewerName(user.fakeNome, selectorType)
-        productPage.reviewerEmail(user.fakeEmail, selectorType)
-        productPage.reviewText('Teste', selectorType)
-        productPage.submitReview(selectorType)
+            .clickViewProduct(1, selectorType)
+            .containWriteYourReview(selectorType)
+            .reviewerName(user.fakeNome, selectorType)
+            .reviewerEmail(user.fakeEmail, selectorType)
+            .reviewText('Teste', selectorType)
+            .submitReview(selectorType)
 
     })
 
     it('T22 - Add to cart from Recommended items', () => {
         landingPage.recommendedItemsVisible(selectorType)
-        landingPage.addRecommendedToCart(1, selectorType)
-        landingPage.clickModalViewCart(selectorType)
-        cartPage.productsInCart(1, selectorType)
+            .addRecommendedToCart(1, selectorType)
+            .clickModalViewCart(selectorType)
+            .productsInCart(1, selectorType)
     })
 
     it('T23 - Verify address details in checkout page', () => {
         const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
 
         newAccountPage.createNewAccount(user, pages)
-        loggedPage.checkLoggedInUser(user.fakeNome, selectorType)
+            .checkLoggedInUser(user.fakeNome, selectorType);
         landingPage.clickProducts(selectorType)
-        productsPage.clickViewProduct(1, selectorType)
-        productPage.addToCart(1, selectorType)
-        productsPage.viewCart(selectorType)
-        cartPage.proceedToCheckout(selectorType)
+            .clickViewProduct(1, selectorType)
+            .addToCart(selectorType)
+            .viewCart(selectorType)
+            .proceedToCheckout(selectorType)
         landingPage.clickCart(selectorType)
-        cartPage.proceedToCheckout(selectorType)
-        checkoutPage.reviewOrder(user, selectorType)
+            .proceedToCheckout(selectorType)
+            .reviewOrder(user, selectorType)
         loggedPage.deleteAccount(loggedPage, selectorType)
     })
 
@@ -319,35 +318,35 @@ describe('Tests on the landing page', () => {
         const pages = { landingPage, signPage, accountCreatedPage, selector: selectorType }
 
         landingPage.clickProducts(selectorType)
-        productsPage.clickViewProduct(1, selectorType)
-        productPage.addToCart(1, selectorType)
-        productsPage.viewCart(selectorType)
-        cartPage.proceedToCheckout(selectorType)
+            .clickViewProduct(1, selectorType)
+            .addToCart(selectorType)
+            .viewCart(selectorType)
+            .proceedToCheckout(selectorType)
         cartPage.clickSigninLogIn(selectorType)
-        newAccountPage.createNewAccount(user, pages)
-        loggedPage.checkLoggedInUser(user.fakeNome, selectorType)
+            .createNewAccount(user, pages)
+            .checkLoggedInUser(user.fakeNome, selectorType);
         landingPage.clickCart(selectorType)
-        cartPage.proceedToCheckout(selectorType)
-        checkoutPage.reviewOrder(user, selectorType)
-        checkoutPage.postComment('Test', selectorType)
-        checkoutPage.placeOrder(selectorType)
-        paymentPage.enterPaymentDetails(user, selectorType)
-        paymentPage.payAndConfirmOrder(selectorType)
-        paymentPage.checkSuccessMessage('Order Placed!', selectorType)
-        paymentPage.clickDownloadInvoice(selectorType)
+            .proceedToCheckout(selectorType)
+            .reviewOrder(user, selectorType)
+            .postComment('Test', selectorType)
+            .placeOrder(selectorType)
+            .enterPaymentDetails(user, selectorType)
+            .payAndConfirmOrder(selectorType)
+            .checkSuccessMessage('Order Placed!', selectorType)
+            .clickDownloadInvoice(selectorType);
         loggedPage.deleteAccount(loggedPage, selectorType)
     })
 
     it('T25 - Verify Scroll Up using Arrow button and Scroll Down functionality', () => {
         landingPage.scrollToFooter(selectorType)
-        landingPage.clickScrollUpButton(selectorType)
-        landingPage.carousselShouldHaveText('Full-Fledged practice website for Automation Engineers', selectorType)
+            .clickScrollUpButton(selectorType)
+            .carousselShouldHaveText('Full-Fledged practice website for Automation Engineers', selectorType)
     })
 
     it('T26 - Verify Scroll Up without Arrow button and Scroll Down functionality', () => {
         landingPage.scrollToFooter(selectorType)
-        landingPage.scrollUpToCaroussel(selectorType)
-        landingPage.carousselShouldHaveText('Full-Fledged practice website for Automation Engineers', selectorType)
+            .scrollUpToCaroussel(selectorType)
+            .carousselShouldHaveText('Full-Fledged practice website for Automation Engineers', selectorType)
     })
 })
 

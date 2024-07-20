@@ -19,6 +19,8 @@ import "cypress-log-filter"
 import 'cypress-plugin-xhr-toggle'
 import 'cypress-xpath'
 import "cypress-real-events/support";
+import "cypress-fail-fast";
+import 'cypress-mochawesome-reporter/register';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
