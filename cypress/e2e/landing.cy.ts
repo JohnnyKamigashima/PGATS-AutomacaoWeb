@@ -186,7 +186,7 @@ describe('Tests on the landing page', () => {
             .addToCart(selectorType)
             .viewCart(selectorType)
             .proceedToCheckout(selectorType);
-        landingPage.clickSigninLogIn(selectorType);
+        cartPage.clickSigninLogIn(selectorType);
         newAccountPage.createNewAccount(user, pages)
             .checkLoggedInUser(user.fakeNome, selectorType);
         landingPage.clickCart(selectorType)

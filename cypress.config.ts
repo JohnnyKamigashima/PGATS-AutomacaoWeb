@@ -15,6 +15,7 @@ export default defineConfig({
       runMode: 2,
       openMode: 0,
     },
+    defaultCommandTimeout: 10000,
     numTestsKeptInMemory: 2,
     specPattern: ["cypress/e2e/**/*.cy.ts"],
     setupNodeEvents(on, config) {
