@@ -5,7 +5,6 @@ import logged from '../support/pages/logged'
 import cart from '../support/pages/cart'
 import products from '../support/pages/products'
 import header from '../support/pages/header'
-import newAccount from '../support/pages/newAccount/index.js'
 
 describe('Tests on the landing page', () => {
     let user
@@ -54,7 +53,6 @@ describe('Tests on the landing page', () => {
             .checkLoggedInUser(user.fakeNome)
             .clickLogout()
         sign.shouldContainText('Login to your account')
-
     })
 
     it('T5 - Should not register user with existing email', () => {

@@ -1,6 +1,5 @@
 import product from '../product'
 import cart from '../cart'
-import landing from '../landing'
 
 export default new class products {
     addAllToCart() {

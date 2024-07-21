@@ -1,23 +1,23 @@
-import { en, Faker, pt_BR } from '@faker-js/faker';
-const fakerBr = new Faker({ locale: [pt_BR] });
-const faker = new Faker({ locale: [en] });
+import { en, Faker, pt_BR } from '@faker-js/faker'
+const fakerBr = new Faker({ locale: [pt_BR] })
+const faker = new Faker({ locale: [en] })
 
-export const fakeNome = fakerBr.person.fullName();
-export const fakeEmail = fakerBr.internet.email();
-export const fakePassword = fakerBr.internet.password();
-export const fakeDay = (1 + Math.floor(Math.random() * 30)).toString();
-export const fakeMonth = faker.date.month();
-export const fakeYear = (1970 + Math.floor(Math.random() * 50)).toString();
-export const firstName = fakerBr.person.firstName();
-export const lastName = fakerBr.person.lastName();
-export const companyName = fakerBr.company.name();
-export const mobileNumber = fakerBr.phone.number();
-export const address = faker.location.streetAddress();
-export const city = fakerBr.location.city();
-export const state = fakerBr.location.state();
-export const country = fakerBr.location.country();
-export const zipCode = fakerBr.location.zipCode();
-export const cardNumber = faker.finance.creditCardNumber();
-export const cardType = faker.finance.creditCardIssuer();
-export const cardExpirationDate = faker.date.future();
-export const cardCVC = faker.finance.creditCardCVV();
+export const fakeNome = fakerBr.person.fullName()
+export const fakeEmail = fakerBr.internet.email()
+export const fakePassword = fakerBr.internet.password()
+export const fakeDay = (1 + Math.floor(Math.random() * 30)).toString()
+export const fakeMonth = faker.date.month()
+export const fakeYear = (1970 + Math.floor(Math.random() * 50)).toString()
+export const firstName = fakerBr.person.firstName()
+export const lastName = fakerBr.person.lastName()
+export const companyName = fakerBr.company.name()
+export const mobileNumber = fakerBr.phone.number()
+export const address = faker.location.streetAddress()
+export const city = fakerBr.location.city()
+export const state = fakerBr.location.state()
+export const country = fakerBr.location.country()
+export const zipCode = fakerBr.location.zipCode()
+export const cardNumber = faker.finance.creditCardNumber()
+export const cardType = faker.finance.creditCardIssuer()
+export const cardExpirationDate = faker.date.future()
+export const cardCVC = faker.finance.creditCardCVV()

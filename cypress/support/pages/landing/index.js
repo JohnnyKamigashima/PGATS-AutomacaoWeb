@@ -1,5 +1,4 @@
 import cart from "../cart"
-import products from "../products"
 
 export default new class landing {
     scrollUpToCaroussel() {
