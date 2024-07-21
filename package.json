@@ -1,14 +1,14 @@
 {
-  "name": "pgats-testesweb",
+  "name": "pgats-testesweb-trabalhofinal",
   "version": "1.0.0",
-  "description": "Testes em Cypress na aula do professor Samuel",
+  "description": "Testes em Cypress para entrega final da aula do professor Samuel",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "npx cypress open",
     "cypress:open": "npx cypress open --e2e --browser chrome",
     "cypress:run": "npx cypress run",
-    "browserstack:run": "browserstack-cypress run --spec cypress/e2e/Exercicios/originalSamuelCorrigido.cy.ts",
+    "browserstack:run": "browserstack-cypress run --spec cypress/e2e/index.cy.js",
     "cypress:samuel": "npx cypress run --spec cypress/e2e/Exercicios/originalSamuelCorrigido.cy.ts",
     "cypress:exercicios": "npx cypress run --spec cypress/e2e/landing.cy.ts"
   },
@@ -22,17 +22,14 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@types/cypress": "^1.1.3",
-    "@types/node": "^20.14.10",
     "cypress-fail-fast": "^7.1.0",
     "cypress-log-filter": "^1.0.5",
     "cypress-mochawesome-reporter": "^3.8.2",
-    "cypress-xpath": "^2.0.1",
-    "globals": "^15.8.0",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^7.16.1",
     "cypress-plugin-xhr-toggle": "^1.2.1",
-    "cypress-real-events": "^1.13.0"
+    "cypress-real-events": "^1.13.0",
+    "cypress-xpath": "^2.0.1",
+    "eslint-plugin-cypress": "^3.3.0",
+    "globals": "^15.8.0"
   },
   "dependencies": {
     "cypress": "^13.13.0"
