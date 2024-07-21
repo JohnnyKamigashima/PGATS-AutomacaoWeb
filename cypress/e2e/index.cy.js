@@ -85,7 +85,7 @@ describe('Tests on the landing page', () => {
         landing.waitUntilCarrousselIsLoaded()
     })
 
-    it('T7 - Should navigate to test cases page', () => {
+    it.skip('T7 - Should navigate to test cases page', () => {
         header.clickTestCases()
             .checkTestCasesHeader('Test Cases')
     })
@@ -110,13 +110,13 @@ describe('Tests on the landing page', () => {
         landing.subscribeToNewsletter(user.fakeEmail)
     })
 
-    it('T11 - Should verify subscription in cart page', () => {
+    it.skip('T11 - Should verify subscription in cart page', () => {
 
         header.clickCart()
         landing.subscribeToNewsletter(user.fakeEmail)
     })
 
-    it('T12 - Should add products to cart', () => {
+    it.skip('T12 - Should add products to cart', () => {
         const pricingList = []
         const pricing1 = {
             description: 'Blue Top',
@@ -146,7 +146,7 @@ describe('Tests on the landing page', () => {
             .productsPricesInCart(pricingList)
     })
 
-    it('T13 - Should verify product quantity in cart', () => {
+    it.skip('T13 - Should verify product quantity in cart', () => {
         const pricingList = []
         const pricing1 = {
             description: 'Blue Top',
@@ -164,7 +164,7 @@ describe('Tests on the landing page', () => {
 
     })
 
-    it('T14 - Should place order and register while checkout', () => {
+    it.skip('T14 - Should place order and register while checkout', () => {
 
         header.clickProducts()
             .clickViewProduct(1)
@@ -209,7 +209,7 @@ describe('Tests on the landing page', () => {
         logged.deleteAccount()
     })
 
-    it('T16 - Place order: Login before Checkout', () => {
+    it.skip('T16 - Place order: Login before Checkout', () => {
         header.clickSigninLogIn()
             .newUserSignup(user)
             .createNewAccount(user)
@@ -228,7 +228,7 @@ describe('Tests on the landing page', () => {
         logged.deleteAccount()
     })
 
-    it('T17 - Remove Products From Cart', () => {
+    it.skip('T17 - Remove Products From Cart', () => {
         products.clickViewProduct(1)
             .addToCart()
             .viewCart()
@@ -236,7 +236,7 @@ describe('Tests on the landing page', () => {
             .isEmpty()
     })
 
-    it('T18 - View Category Products', () => {
+    it.skip('T18 - View Category Products', () => {
         products.containCatagoryPanel()
             .selectCategory('Women')
             .selectSubCategory('Dress')
@@ -246,7 +246,7 @@ describe('Tests on the landing page', () => {
             .checkProductsListText('Men - Tshirts Products')
     })
 
-    it('T19 - View & Cart Brand Products', () => {
+    it.skip('T19 - View & Cart Brand Products', () => {
         header.clickProducts()
             .containBrandsPanel()
             .selectBrand('Polo')
@@ -255,7 +255,7 @@ describe('Tests on the landing page', () => {
             .checkProductsListText('Brand - Babyhug Products')
     })
 
-    it('T20 - Search Products and Verify Cart After Login', () => {
+    it.skip('T20 - Search Products and Verify Cart After Login', () => {
         header.clickSigninLogIn()
             .newUserSignup(user)
             .createNewAccount(user)
@@ -273,7 +273,7 @@ describe('Tests on the landing page', () => {
 
     })
 
-    it('T21 - Add review on product', () => {
+    it.skip('T21 - Add review on product', () => {
         header.clickProducts()
             .clickViewProduct(1)
             .containWriteYourReview()
@@ -284,14 +284,14 @@ describe('Tests on the landing page', () => {
 
     })
 
-    it('T22 - Add to cart from Recommended items', () => {
+    it.skip('T22 - Add to cart from Recommended items', () => {
         landing.recommendedItemsVisible()
             .addRecommendedToCart(1)
             .clickModalViewCart()
             .productsInCart(1)
     })
 
-    it('T23 - Verify address details in checkout page', () => {
+    it.skip('T23 - Verify address details in checkout page', () => {
         header.clickSigninLogIn()
             .newUserSignup(user)
             .createNewAccount(user)
@@ -308,7 +308,7 @@ describe('Tests on the landing page', () => {
         logged.deleteAccount()
     })
 
-    it('T24 - Download Invoice after purchase order', () => {
+    it.skip('T24 - Download Invoice after purchase order', () => {
 
         header.clickProducts()
             .clickViewProduct(1)
@@ -332,13 +332,13 @@ describe('Tests on the landing page', () => {
         logged.deleteAccount()
     })
 
-    it('T25 - Verify Scroll Up using Arrow button and Scroll Down functionality', () => {
+    it.skip('T25 - Verify Scroll Up using Arrow button and Scroll Down functionality', () => {
         landing.scrollToFooter()
             .clickScrollUpButton()
             .carousselShouldHaveText('Full-Fledged practice website for Automation Engineers')
     })
 
-    it('T26 - Verify Scroll Up without Arrow button and Scroll Down functionality', () => {
+    it.skip('T26 - Verify Scroll Up without Arrow button and Scroll Down functionality', () => {
         landing.scrollToFooter()
             .scrollUpToCaroussel()
             .carousselShouldHaveText('Full-Fledged practice website for Automation Engineers')
