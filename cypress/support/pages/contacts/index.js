@@ -1,4 +1,4 @@
-import landing from "../landing"
+import landing from "../header"
 
 export default new class contacts {
     checkHeaderText(text) {

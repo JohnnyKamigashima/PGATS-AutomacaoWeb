@@ -1,10 +1,12 @@
 import User from '../support/class/User.js'
 import landing from '../support/pages/landing'
 import sign from '../support/pages/sign'
-import newAccount from '../support/pages/newAccount'
 import logged from '../support/pages/logged'
 import cart from '../support/pages/cart'
 import products from '../support/pages/products'
+import header from '../support/pages/header'
+import newAccount from '../support/pages/newAccount/index.js'
+
 describe('Tests on the landing page', () => {
     let user
 
@@ -15,7 +17,7 @@ describe('Tests on the landing page', () => {
     })
 
     it('T1 - Should sign up and delete account', () => {
-        landing.clickSigninLogIn()
+        header.clickSigninLogIn()
             .newUserSignup(user)
             .createNewAccount(user)
             .checkSuccessMessage('Account Created!')
@@ -24,7 +26,7 @@ describe('Tests on the landing page', () => {
     })
 
     it('T2 - Should login and delete account', () => {
-        landing.clickSigninLogIn()
+        header.clickSigninLogIn()
             .newUserSignup(user)
             .createNewAccount(user)
             .checkSuccessMessage('Account Created!')
@@ -32,17 +34,17 @@ describe('Tests on the landing page', () => {
             .clickSigninLogIn()
             .login(user)
             .checkLoggedInUser(user.fakeNome)
-            .deleteAccount(logged)
+            .deleteAccount()
     })
 
     it('T3 - Should not login with incorrect email and password', () => {
-        landing.clickSigninLogIn()
+        header.clickSigninLogIn()
             .login(user)
         sign.checkErrorMessage('Your email or password is incorrect!')
     })
 
     it('T4 - Should logout user', () => {
-        landing.clickSigninLogIn()
+        header.clickSigninLogIn()
             .newUserSignup(user)
             .createNewAccount(user)
             .checkSuccessMessage('Account Created!')
@@ -56,7 +58,7 @@ describe('Tests on the landing page', () => {
     })
 
     it('T5 - Should not register user with existing email', () => {
-        landing.clickSigninLogIn()
+        header.clickSigninLogIn()
             .newUserSignup(user)
             .createNewAccount(user)
             .checkSuccessMessage('Account Created!')
@@ -70,7 +72,7 @@ describe('Tests on the landing page', () => {
     })
 
     it('T6 - Should submit contact form', () => {
-        landing.clickContactUs()
+        header.clickContactUs()
             .checkHeaderText('Get In Touch')
             .fillName(user.fakeNome)
             .fillEmail(user.fakeEmail)
@@ -80,15 +82,16 @@ describe('Tests on the landing page', () => {
             .clickSubmit()
             .checkSuccessMessage('Success! Your details have been submitted successfully.')
             .clickOk()
-            .waitUntilCarrousselIsLoaded()
+        landing.waitUntilCarrousselIsLoaded()
     })
 
-    it.skip('T7 - Should navigate to test cases page', () => {
-        landing.clickTestCases()
+    it('T7 - Should navigate to test cases page', () => {
+        header.clickTestCases()
+            .checkTestCasesHeader('Test Cases')
     })
 
     it('T8 - Should navigate to test cases page', () => {
-        landing.clickProducts()
+        header.clickProducts()
             .checkHeaderText('All Products')
             .checkProductsList()
             .clickViewProduct(1)
@@ -97,7 +100,7 @@ describe('Tests on the landing page', () => {
     })
 
     it('T9 - Should search for a product', () => {
-        landing.clickProducts()
+        header.clickProducts()
             .checkHeaderText('All Products')
             .searchProduct('Women')
             .checkSearchedProducts('Women')
@@ -107,13 +110,13 @@ describe('Tests on the landing page', () => {
         landing.subscribeToNewsletter(user.fakeEmail)
     })
 
-    it.skip('T11 - Should verify subscription in cart page', () => {
+    it('T11 - Should verify subscription in cart page', () => {
 
-        landing.clickCart()
+        header.clickCart()
         landing.subscribeToNewsletter(user.fakeEmail)
     })
 
-    it.skip('T12 - Should add products to cart', () => {
+    it('T12 - Should add products to cart', () => {
         const pricingList = []
         const pricing1 = {
             description: 'Blue Top',
@@ -130,7 +133,7 @@ describe('Tests on the landing page', () => {
         pricingList.push(pricing1)
         pricingList.push(pricing2)
 
-        landing.clickProducts()
+        header.clickProducts()
             .searchProduct(pricingList[0].description)
             .hoverOverProduct(1)
             .hoverAddToCart(1)
@@ -143,7 +146,7 @@ describe('Tests on the landing page', () => {
             .productsPricesInCart(pricingList)
     })
 
-    it.skip('T13 - Should verify product quantity in cart', () => {
+    it('T13 - Should verify product quantity in cart', () => {
         const pricingList = []
         const pricing1 = {
             description: 'Blue Top',
@@ -161,20 +164,20 @@ describe('Tests on the landing page', () => {
 
     })
 
-    it.skip('T14 - Should place order and register while checkout', () => {
+    it('T14 - Should place order and register while checkout', () => {
 
-        landing.clickProducts()
+        header.clickProducts()
             .clickViewProduct(1)
             .addToCart()
             .viewCart()
             .proceedToCheckout()
         cart.clickSigninLogIn()
-        landing.clickSigninLogIn()
+        header.clickSigninLogIn()
             .newUserSignup(user)
             .createNewAccount(user)
             .checkSuccessMessage('Account Created!')
             .checkLoggedInUser(user.fakeNome)
-        landing.clickCart()
+        header.clickCart()
             .proceedToCheckout()
             .reviewOrder(user)
             .postComment('Test')
@@ -182,18 +185,19 @@ describe('Tests on the landing page', () => {
             .enterPaymentDetails(user)
             .payAndConfirmOrder()
             .checkSuccessMessage('Order Placed!')
-        logged.deleteAccount(logged)
+        logged.deleteAccount()
     })
+
     it('T15 - Should place order', () => {
-        landing.clickSigninLogIn()
+        header.clickSigninLogIn()
             .newUserSignup(user)
             .createNewAccount(user)
             .checkSuccessMessage('Account Created!')
             .checkLoggedInUser(user.fakeNome)
-        landing.clickProducts()
+        header.clickProducts()
             .clickViewProduct(1)
             .addToCart()
-        landing.clickCart()
+        header.clickCart()
             .proceedToCheckout()
             .reviewOrder(user)
             .postComment('Test')
@@ -202,14 +206,15 @@ describe('Tests on the landing page', () => {
             .payAndConfirmOrder()
             .checkSuccessMessage('Order Placed!')
             .checkOrderPlacedMessage('Congratulations! Your order has been confirmed!')
-        logged.deleteAccount(logged)
+        logged.deleteAccount()
     })
 
-    it.skip('T16 - Place order: Login before Checkout', () => {
-        landing.clickSigninLogIn()
-        newAccount.createNewAccount(user)
+    it('T16 - Place order: Login before Checkout', () => {
+        header.clickSigninLogIn()
+            .newUserSignup(user)
+            .createNewAccount(user)
             .checkSuccessMessage('Account Created!')
-        landing.clickProducts()
+        header.clickProducts()
             .clickViewProduct(1)
             .addToCart()
             .viewCart()
@@ -220,10 +225,10 @@ describe('Tests on the landing page', () => {
             .enterPaymentDetails(user)
             .payAndConfirmOrder()
             .checkSuccessMessage('Order Placed!')
-        logged.deleteAccount(logged)
+        logged.deleteAccount()
     })
 
-    it.skip('T17 - Remove Products From Cart', () => {
+    it('T17 - Remove Products From Cart', () => {
         products.clickViewProduct(1)
             .addToCart()
             .viewCart()
@@ -231,8 +236,8 @@ describe('Tests on the landing page', () => {
             .isEmpty()
     })
 
-    it.skip('T18 - View Category Products', () => {
-        landing.containCatagoryPanel()
+    it('T18 - View Category Products', () => {
+        products.containCatagoryPanel()
             .selectCategory('Women')
             .selectSubCategory('Dress')
             .checkProductsListText('Women - Dress Products')
@@ -241,33 +246,35 @@ describe('Tests on the landing page', () => {
             .checkProductsListText('Men - Tshirts Products')
     })
 
-    it.skip('T19 - View & Cart Brand Products', () => {
-        landing.clickProducts()
-        landing.containBrandsPanel()
+    it('T19 - View & Cart Brand Products', () => {
+        header.clickProducts()
+            .containBrandsPanel()
             .selectBrand('Polo')
             .checkProductsListText('Brand - Polo Products')
             .selectBrand('Babyhug')
             .checkProductsListText('Brand - Babyhug Products')
     })
 
-    it.skip('T20 - Search Products and Verify Cart After Login', () => {
-        landing.clickSigninLogIn()
-        newAccount.createNewAccount(user).checkSuccessMessage('Account Created!')
+    it('T20 - Search Products and Verify Cart After Login', () => {
+        header.clickSigninLogIn()
+            .newUserSignup(user)
+            .createNewAccount(user)
+            .checkSuccessMessage('Account Created!')
             .clickLogout()
             .clickProducts()
             .searchProduct('Polo')
             .checkSearchedProducts('Polo')
             .addAllToCart()
             .productsInCart(1)
-        landing.clickSigninLogIn()
-        newAccount.login(user)
-        landing.clickCart()
+        header.clickSigninLogIn()
+            .login(user)
+        header.clickCart()
             .productsInCart(1)
 
     })
 
-    it.skip('T21 - Add review on product', () => {
-        landing.clickProducts()
+    it('T21 - Add review on product', () => {
+        header.clickProducts()
             .clickViewProduct(1)
             .containWriteYourReview()
             .reviewerName(user.fakeNome)
@@ -277,39 +284,43 @@ describe('Tests on the landing page', () => {
 
     })
 
-    it.skip('T22 - Add to cart from Recommended items', () => {
+    it('T22 - Add to cart from Recommended items', () => {
         landing.recommendedItemsVisible()
             .addRecommendedToCart(1)
             .clickModalViewCart()
             .productsInCart(1)
     })
 
-    it.skip('T23 - Verify address details in checkout page', () => {
-        landing.clickSigninLogIn()
-        newAccount.createNewAccount(user).checkSuccessMessage('Account Created!')
+    it('T23 - Verify address details in checkout page', () => {
+        header.clickSigninLogIn()
+            .newUserSignup(user)
+            .createNewAccount(user)
+            .checkSuccessMessage('Account Created!')
             .checkLoggedInUser(user.fakeNome)
-        landing.clickProducts()
+        header.clickProducts()
             .clickViewProduct(1)
             .addToCart()
             .viewCart()
             .proceedToCheckout()
-        landing.clickCart()
+        header.clickCart()
             .proceedToCheckout()
             .reviewOrder(user)
-        logged.deleteAccount(logged)
+        logged.deleteAccount()
     })
 
-    it.skip('T24 - Download Invoice after purchase order', () => {
+    it('T24 - Download Invoice after purchase order', () => {
 
-        landing.clickProducts()
+        header.clickProducts()
             .clickViewProduct(1)
             .addToCart()
             .viewCart()
             .proceedToCheckout()
         cart.clickSigninLogIn()
+        sign.newUserSignup(user)
             .createNewAccount(user)
-            .checkLoggedInUser(user.fakeNome)
-        landing.clickCart()
+            .clickContinueButton()
+        logged.checkLoggedInUser(user.fakeNome)
+        header.clickCart()
             .proceedToCheckout()
             .reviewOrder(user)
             .postComment('Test')
@@ -318,16 +329,16 @@ describe('Tests on the landing page', () => {
             .payAndConfirmOrder()
             .checkSuccessMessage('Order Placed!')
             .clickDownloadInvoice()
-        logged.deleteAccount(logged)
+        logged.deleteAccount()
     })
 
-    it.skip('T25 - Verify Scroll Up using Arrow button and Scroll Down functionality', () => {
+    it('T25 - Verify Scroll Up using Arrow button and Scroll Down functionality', () => {
         landing.scrollToFooter()
             .clickScrollUpButton()
             .carousselShouldHaveText('Full-Fledged practice website for Automation Engineers')
     })
 
-    it.skip('T26 - Verify Scroll Up without Arrow button and Scroll Down functionality', () => {
+    it('T26 - Verify Scroll Up without Arrow button and Scroll Down functionality', () => {
         landing.scrollToFooter()
             .scrollUpToCaroussel()
             .carousselShouldHaveText('Full-Fledged practice website for Automation Engineers')

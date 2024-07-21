@@ -1,6 +1,4 @@
-import sign from "../sign"
 import cart from "../cart"
-import contacts from "../contacts"
 import products from "../products"
 
 export default new class landing {
@@ -36,31 +34,6 @@ export default new class landing {
         cy.get('.recommended_items').scrollIntoView().should('be.visible')
         return this
     }
-    selectBrand(text) {
-        cy.get('.brands-name').contains(text).click()
-        return products
-    }
-    containBrandsPanel() {
-        cy.get('.brands_products h2').should('contain', 'Brands')
-        return this
-    }
-    selectSubCategory(text) {
-        cy.get('.panel-body').contains(text).click()
-        return products
-    }
-    selectCategory(text) {
-        cy.get('.panel-heading').contains(text).find('.fa-plus').click()
-        return this
-    }
-    containCatagoryPanel() {
-        cy.get('.left-sidebar h2').should('contain', 'Category')
-        return this
-    }
-    clickCart() {
-        cy.get('.navbar-nav .fa-shopping-cart').click({ waitForAnimations: false })
-        cy.get('.container div.breadcrumbs').should('contain', 'Shopping Cart')
-        return cart
-    }
 
     subscribeToNewsletter(fakeEmail) {
         cy.get('footer h2').should('have.text', 'Subscription').scrollIntoView()
@@ -68,23 +41,6 @@ export default new class landing {
         cy.get('[id="subscribe"]').click()
         cy.get('.alert').should('contain', 'You have been successfully subscribed!')
         return this
-    }
-    clickProducts() {
-        cy.get('[href="/products"]').click()
-        return products
-    }
-    clickTestCases() {
-        cy.get('[id="header"] .navbar-nav [href="/test_cases"]').click()
-        cy.get('h2 b').should('contain', 'Test Cases')
-        return this
-    }
-    clickContactUs() {
-        cy.get('[href="/contact_us"]').click()
-        return contacts
-    }
-    clickSigninLogIn() {
-        cy.get('[href="/login"]').eq(0).click()
-        return sign
     }
 
     waitUntilCarrousselIsLoaded() {

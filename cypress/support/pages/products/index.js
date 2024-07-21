@@ -13,9 +13,33 @@ export default new class products {
         })
         return cart
     }
+
+    containBrandsPanel() {
+        cy.get('.brands_products h2').should('contain', 'Brands')
+        return this
+    }
+
+    selectBrand(text) {
+        cy.get('.brands-name').contains(text).click()
+        return this
+    }
+
+    selectSubCategory(text) {
+        cy.get('.panel-body').contains(text).click()
+        return this
+    }
+    selectCategory(text) {
+        cy.get('.panel-heading').contains(text).find('.fa-plus').click()
+        return this
+    }
+    containCatagoryPanel() {
+        cy.get('.left-sidebar h2').should('contain', 'Category')
+        return this
+    }
+
     checkProductsListText(text) {
         cy.get('.features_items').should('contain', text)
-        return landing
+        return this
     }
 
     viewCart() {

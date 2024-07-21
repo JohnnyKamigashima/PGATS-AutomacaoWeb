@@ -1,4 +1,4 @@
-import landing from '../landing/index'
+import landing from '../header/index'
 
 export default new class logged {
     deleteAccount() {

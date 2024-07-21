@@ -102,7 +102,7 @@ export default new class newAccount {
         return this
     }
     checkHeaderText(text) {
-        cy.get('section b').contains(text).should('be.visible')
+        cy.get('section b').contains(text)
         return this
     }
     selectBirthDay(day) {

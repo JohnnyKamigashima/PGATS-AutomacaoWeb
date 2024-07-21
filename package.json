@@ -21,6 +21,7 @@
   "author": "Johnny Kamigashima",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.7.0",
     "@faker-js/faker": "^8.4.1",
     "cypress-fail-fast": "^7.1.0",
     "cypress-log-filter": "^1.0.5",
