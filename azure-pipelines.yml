@@ -15,10 +15,11 @@ steps:
     versionSpec: '20.x'
   displayName: 'Install Node.js'
 
-- script: |
+- script: 
     npm install
     npm run build
   displayName: 'npm install and build'
   
 - script: 
-  npx cypress run
+    npx cypress run
+  displayName: Run Cypress  
